@@ -24,13 +24,9 @@ public class BattleShipsTest {
     public ExpectedException expectedException = ExpectedException.none();
 
     @Test
-    public void testInitialisesGameBoard() {
-        BattleShips.main(new String[] {});
+    public void testDrawsBoard() {
+        BattleShips.DrawBoard();
         assertEquals(
-                "**** Welcome to Battle Ships game ****\n" +
-                        "\n" +
-                        "Right now, the ocean is empty.\n" +
-                        "\n" +
                         "  0123456789\n" +
                         "0|          |0\n" +
                         "1|          |1\n" +
@@ -44,5 +40,19 @@ public class BattleShipsTest {
                         "9|          |9\n" +
                         "  0123456789\n",
                 outContent.toString());
+    }
+
+    @Test
+    public void testShipsGetDeployedOnBoard() {
+        String[][] board = new String[10][10];
+        Integer[][] boats = {{0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}};
+
+        BattleShips.DeployShips(board, boats);
+
+        assertEquals(board[0][0], "@");
+        assertEquals(board[1][1], "@");
+        assertEquals(board[2][2], "@");
+        assertEquals(board[3][3], "@");
+        assertEquals(board[4][4], "@");
     }
 }
